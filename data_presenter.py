@@ -47,18 +47,18 @@ print()
 #Formatting for the data display. Unsure where the extra digits are coming from in certain prints so I formatted to 2 decimal points
 
 for invoice in invoice_totals:
-    print("%.2f" % invoice)
+    print(round(invoice,2))
 
 print()
 
-print("%.2f" % all_invoices)
+print(round(all_invoices,2))
 
 #below is in largely code that I found in the plotly documentation for displaying data in a browser.
 
 large_rockwell_template = dict(
     layout=go.Layout(title_font=dict(family="Rockwell", size=24))
 )
-fig = go.Figure(data=go.Bar(y=[choc,van,straw],x=["Chocolate", "Vanilla", "Strawberry"]))
+fig = go.Figure(data=go.Bar(y=[round(choc,2),round(van,2),round(straw,2)],x=["Chocolate", "Vanilla", "Strawberry"]))
 fig.update_layout(yaxis_tickformat = '$')
 fig.update_layout(title="Best-Selling Cupcakes", template=large_rockwell_template)
 fig.show()
