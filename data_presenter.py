@@ -9,9 +9,9 @@ all_invoices = 0
 
 #variables I created to store data to be used for data visualization
 
-choc = 0
-van = 0
-straw = 0
+choc = []
+van = []
+straw = []
 
 #Parsing through the csv file and saving the data I need
 
@@ -34,11 +34,11 @@ print()
     
 for i in range(len(cupcakes)):
     if cupcakes[i] == "Chocolate":
-        choc += invoice_totals[i]
+        choc.append(round(invoice_totals[i],2))
     elif cupcakes[i] == "Vanilla":
-        van += invoice_totals[i]
+        van.append(round(invoice_totals[i],2))
     elif cupcakes[i] == "Strawberry":
-        straw += invoice_totals[i]
+        straw.append(round(invoice_totals[i],2))
 
     print(cupcakes[i])
 
@@ -58,7 +58,7 @@ print(round(all_invoices,2))
 large_rockwell_template = dict(
     layout=go.Layout(title_font=dict(family="Rockwell", size=24))
 )
-fig = go.Figure(data=go.Bar(y=[round(choc,2),round(van,2),round(straw,2)],x=["Chocolate", "Vanilla", "Strawberry"]))
+fig = go.Figure(data=go.Bar(y=[round(sum(choc),2), round(sum(van),2), round(sum(straw),2)],x=["Chocolate", "Vanilla", "Strawberry"]))
 fig.update_layout(yaxis_tickformat = '$')
 fig.update_layout(title="Best-Selling Cupcakes", template=large_rockwell_template)
 fig.show()
